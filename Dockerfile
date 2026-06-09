@@ -29,6 +29,9 @@ RUN npm run build
 FROM node:20-alpine
 WORKDIR /app
 
+# Install build tools temporarily
+RUN apk add --no-cache python3 make g++
+
 # Copy built assets
 COPY --from=builder /app/shared ./shared
 COPY --from=builder /app/backend/dist ./backend/dist
@@ -36,9 +39,8 @@ COPY --from=builder /app/backend/package*.json ./backend/
 COPY --from=builder /app/frontend/dist ./frontend/dist
 COPY --from=builder /app/package*.json ./
 
-# Install ONLY production dependencies at the root
-# This will include dependencies needed for the backend to run
-RUN npm install --omit=dev
+# Install ONLY production dependencies
+RUN npm install --omit=dev && apk del python3 make g++
 
 EXPOSE 3000
 CMD ["node", "backend/dist/main"]
