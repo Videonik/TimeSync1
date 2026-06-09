@@ -30,7 +30,7 @@ async function bootstrap() {
     res.sendFile(join(frontendPath, 'index.html'));
   });
 
-  const port = process.env.PORT ?? 3000;
+  const port = process.env.PORT ?? 80;
   console.log(`Application is running on port: ${port}`);
   await app.listen(port);
 }

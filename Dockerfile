@@ -42,5 +42,5 @@ COPY --from=builder /app/package*.json ./
 # Install ONLY production dependencies
 RUN npm install --omit=dev && apk del python3 make g++
 
-EXPOSE 3000
+EXPOSE 80
 CMD ["node", "backend/dist/main"]
