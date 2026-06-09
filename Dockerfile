@@ -29,18 +29,13 @@ RUN npm run build
 FROM node:20-alpine
 WORKDIR /app
 
-# Install build tools temporarily for production install
-RUN apk add --no-cache python3 make g++
-
-# Copy built assets to a FLAT structure in the final image
+# Copy ALL node_modules and built folders to keep workspace logic working
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/shared ./shared
-COPY --from=builder /app/backend/dist ./dist
-COPY --from=builder /app/backend/package*.json ./
+COPY --from=builder /app/backend/dist ./backend/dist
+COPY --from=builder /app/backend/package.json ./backend/package.json
 COPY --from=builder /app/frontend/dist ./public
-COPY --from=builder /app/package*.json ./
-
-# Install ONLY production dependencies
-RUN npm install --omit=dev && apk del python3 make g++
 
 EXPOSE 80
-CMD ["node", "dist/main"]
+# Run from root
+CMD ["node", "backend/dist/main"]
