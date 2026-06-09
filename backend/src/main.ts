@@ -22,7 +22,7 @@ async function bootstrap() {
   app.use(express.static(frontendPath));
 
   // Handle SPA routing: redirect all non-api routes to index.html
-  app.use((req, res, next) => {
+  app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (req.path.startsWith('/api') || req.path.startsWith('/auth') || req.path.startsWith('/events')) {
       return next();
     }
