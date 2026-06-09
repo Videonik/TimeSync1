@@ -1,0 +1,14 @@
+meta:
+  api_version: 2
+  project_type: docker
+  name: timesync
+
+build:
+  dockerfile: Dockerfile
+  
+deploy:
+  environment:
+    - key: PORT
+      value: 80
+    - key: DB_TYPE
+      value: postgres
