@@ -18,8 +18,8 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   // Serve static files from the React app
-  const frontendPath = join(process.cwd(), 'frontend', 'dist');
-  console.log(`Serving frontend from: ${frontendPath}`);
+  const frontendPath = join(process.cwd(), 'public');
+  console.log(`Checking frontend path: ${frontendPath}`);
   app.use(express.static(frontendPath));
 
   // Handle SPA routing: redirect all non-api routes to index.html
@@ -31,7 +31,7 @@ async function bootstrap() {
   });
 
   const port = process.env.PORT ?? 80;
-  console.log(`Application is running on port: ${port}`);
+  console.log(`Server starting on port: ${port}`);
   await app.listen(port);
 }
 bootstrap();
