@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getEvent, submitVote, addGuest, confirmSlot, API_BASE_URL } from '../api';
+import { getEvent, submitVote, addGuest, confirmSlot } from '../api';
 import type { ParticipantAvailability } from '@scheduler/shared';
 import { VotingCalendar } from './VotingCalendar';
 import { jwtDecode } from 'jwt-decode';

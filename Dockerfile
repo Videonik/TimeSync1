@@ -1,6 +1,5 @@
-# Build Shared
+# Build Stage
 FROM node:20-alpine AS builder
-# Install build dependencies for better-sqlite3
 RUN apk add --no-cache python3 make g++
 WORKDIR /app
 COPY package*.json ./
@@ -9,7 +8,13 @@ COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
 RUN npm install
 
+# Build Shared FIRST
+COPY shared ./shared
+WORKDIR /app/shared
+RUN npm run build
+
 # Build Frontend
+WORKDIR /app
 COPY frontend ./frontend
 WORKDIR /app/frontend
 RUN npm run build

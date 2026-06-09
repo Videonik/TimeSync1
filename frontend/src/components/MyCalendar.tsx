@@ -6,6 +6,7 @@ import { ru } from 'date-fns/locale';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../calendar.css';
 import api from '../api';
+import { jwtDecode } from 'jwt-decode';
 
 const localizer = dateFnsLocalizer({
   format,
