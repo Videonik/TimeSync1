@@ -2,6 +2,9 @@ meta:
   api_version: 2
   project_type: docker
   name: timesync
+  toolchain:
+    name: docker
+    version: latest
 
 build:
   dockerfile: Dockerfile
@@ -9,6 +12,6 @@ build:
 deploy:
   environment:
     - key: PORT
-      value: 80
+      value: 3000
     - key: DB_TYPE
       value: postgres
