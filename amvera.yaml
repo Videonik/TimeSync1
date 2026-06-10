@@ -1,11 +1,9 @@
 meta:
-  api_version: 2
+  environment: docker
   toolchain:
     name: docker
     version: latest
 build:
   dockerfile: Dockerfile
-deploy:
-  environment:
-    - key: PORT
-      value: 3000
+run:
+  containerPort: 80
