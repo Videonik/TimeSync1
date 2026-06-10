@@ -18,7 +18,7 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   // Serve static files from the React app
-  const frontendPath = join(process.cwd(), 'public');
+  const frontendPath = join(__dirname, '..', '..', '..', 'public');
   console.log(`Checking frontend path: ${frontendPath}`);
   app.use(express.static(frontendPath));
 
